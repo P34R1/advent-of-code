@@ -54,7 +54,7 @@ pub fn part_1(input: &str) -> usize {
         }
     });
 
-    valid_games.sum::<usize>()
+    valid_games.sum()
 }
 
 pub fn part_2(input: &str) -> usize {
@@ -73,5 +73,5 @@ pub fn part_2(input: &str) -> usize {
         max_red * max_green * max_blue
     });
 
-    power_of_games.sum::<usize>()
+    power_of_games.sum()
 }
