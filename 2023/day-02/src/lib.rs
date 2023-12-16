@@ -41,7 +41,7 @@ fn process_game(game: &str) -> impl Iterator<Item = Set> + '_ {
         })
 }
 
-pub fn part_1(input: &str) -> usize {
+pub fn part_1(input: &str) -> Result<usize, std::io::Error> {
     let games = input.lines().map(process_game);
 
     let valid_games = games.enumerate().filter_map(|(i, mut game)| {
@@ -54,10 +54,10 @@ pub fn part_1(input: &str) -> usize {
         }
     });
 
-    valid_games.sum()
+    Ok(valid_games.sum())
 }
 
-pub fn part_2(input: &str) -> usize {
+pub fn part_2(input: &str) -> Result<usize, std::io::Error> {
     let games = input.lines().map(process_game);
 
     let power_of_games = games.map(|game| {
@@ -73,5 +73,5 @@ pub fn part_2(input: &str) -> usize {
         max_red * max_green * max_blue
     });
 
-    power_of_games.sum()
+    Ok(power_of_games.sum())
 }

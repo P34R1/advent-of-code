@@ -13,9 +13,9 @@ fn convert_to_number(str: &str) -> usize {
     }
 }
 
-pub fn part_1(input: &str) -> usize {
-    let re = regex::Regex::new(r"(\d).*(\d)").expect("Valid Regex");
-    let re2 = regex::Regex::new(r"(\d)").expect("Valid Regex");
+pub fn part_1(input: &str) -> Result<usize, regex::Error> {
+    let re = regex::Regex::new(r"(\d).*(\d)")?;
+    let re2 = regex::Regex::new(r"(\d)")?;
 
     // Iterate through the lines in the input
     let calibration_values = input.lines().map(|str: &str| {
@@ -35,15 +35,14 @@ pub fn part_1(input: &str) -> usize {
         convert_to_number(first_num) * 10 + convert_to_number(last_num)
     });
 
-    calibration_values.sum()
+    Ok(calibration_values.sum())
 }
 
-pub fn part_2(input: &str) -> usize {
+pub fn part_2(input: &str) -> Result<usize, regex::Error> {
     let re = regex::Regex::new(
         r"(one|two|three|four|five|six|seven|eight|nine|\d).*(one|two|three|four|five|six|seven|eight|nine|\d)",
-    ).expect("Valid Regex");
-    let re2 = regex::Regex::new(r"(one|two|three|four|five|six|seven|eight|nine|\d)")
-        .expect("Valid Regex");
+    )?;
+    let re2 = regex::Regex::new(r"(one|two|three|four|five|six|seven|eight|nine|\d)")?;
 
     // Iterate through the lines in the input
     let calibration_values = input.lines().map(|str: &str| {
@@ -63,5 +62,5 @@ pub fn part_2(input: &str) -> usize {
         convert_to_number(first_num) * 10 + convert_to_number(last_num)
     });
 
-    calibration_values.sum()
+    Ok(calibration_values.sum())
 }
